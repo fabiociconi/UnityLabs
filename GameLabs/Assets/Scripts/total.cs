@@ -15,9 +15,12 @@ public class total : MonoBehaviour {
     private int obj3 = 0;
     // Use this for initialization
     void Start () {
-        var obj = GameObject.Find("GameManager_Obj");
+        // var objects[] = GameObject.FindGameObjectsWithTag("obj_2");
+
+
+        GameObject[] obj = UnityEngine.Object.FindObjectsOfType<GameObject>();
         Debug.Log("Peguei"+ obj);
-        foreach (Transform item in obj.transform)
+        foreach (GameObject item in obj)
         {
             if (item.tag == "obj_1" && item.GetComponentInParent<objScriptCollision>().pego)
             {

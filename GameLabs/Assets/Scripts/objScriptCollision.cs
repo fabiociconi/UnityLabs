@@ -5,9 +5,17 @@ using UnityEngine;
 public class objScriptCollision : MonoBehaviour {
 
     public bool pego = false;
-	// Use this for initialization
-	void Start () {
+
+
+
+    private void Awake()
+    {
         DontDestroyOnLoad(transform.gameObject);
+    }
+    
+    
+    // Use this for initialization
+    void Start () {
 	}
   
     private void OnTriggerEnter2D(Collider2D collision)

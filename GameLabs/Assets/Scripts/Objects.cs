@@ -20,17 +20,17 @@ public class Objects : MonoBehaviour {
     public float sec = 30f;
 
     public float  spawnInterval = 1.0f;
+    private bool showTotal = false;
 
     // Use this for initialization
     void Start () {
         InvokeRepeating("SpawnObject",0.0f, spawnInterval);
 	}
-    private void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
+   
     private void SpawnObject()
     {
+        if (showTotal) { return; }
+
         Vector3 sPosition = new Vector3(UnityEngine.Random.Range(-objectValues.x, objectValues.x), objectValues.y, objectValues.z);
         //Quaternion spawnRotation = Quaternion.identity;
         var item = UnityEngine.Random.Range(0, 3);
@@ -54,14 +54,19 @@ public class Objects : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (showTotal)
+        {
+            return;
+        }
         sec  -= Time.deltaTime;
         seconds.text = sec.ToString();
     }
     // Update is called once per frame
     void Update ()
     {
-		if (sec <= 0)
+		if (sec <= 0 && !showTotal)
         {
+            showTotal = true;
             SceneManager.LoadScene("Lab5-Total");
            
         }
